@@ -50,10 +50,17 @@ const pinkPrice = .55
 */
 
 // CODE HERE
-
-
-
-
+//created a variable to hold the sum of all acres
+let totalAcres = 0;
+//used the length of fujiAcres to create the loop since all arrays in question are the same length
+//this would fall down if, for any reason, the arrays didn't include values for all seven days of the week
+for(let i=0; i < fujiAcres.length; i++)
+{
+    totalAcres += fujiAcres[i];
+    totalAcres += galaAcres[i];
+    totalAcres += pinkAcres[i];
+}
+console.log(totalAcres);
 
 // PROBLEM 2
 
@@ -69,9 +76,11 @@ const pinkPrice = .55
 
 // CODE HERE
 
-
-
-
+//the length of fujiAcres (or any of the arrays) should be equal to the number of work days
+//this solution would automatically adjust if, for instance, Saturday and Sunday numbers weren't reported in the fujiAcres array
+//this would fall down if pinkAcres and galaAcres had fewer work days than fujiAcres
+let averageDailyAcres = totalAcres / fujiAcres.length;
+console.log(averageDailyAcres);
 
 // PROBLEM 3
 
@@ -106,7 +115,12 @@ let acresLeft = 174
 let days = 0
 
 // CODE HERE
-
+while(acresLeft > 0)
+{
+    acresLeft -= averageDailyAcres;
+    days++;
+}
+console.log(days);
 
 
 // PROBLEM 4
@@ -134,14 +148,23 @@ let days = 0
 */
 
 // CODE HERE
-
-// let fujiTons =
-// let galaTons =
-// let pinkTons =
-
-
-
-
+const tonsPerAcre = 6.5;
+//declared the arrays
+let fujiTons = [];
+let galaTons = [];
+let pinkTons = [];
+//looped through all arrays at once assuming each has the same length as fujiAcres
+for(let i = 0; i < fujiAcres.length; i++)
+{
+    //multiplied the acres picked of each variety by the tonsPerAcre amount to calculate total tons picked per day per variety
+    fujiTons.push(fujiAcres[i] * tonsPerAcre);
+    galaTons.push(galaAcres[i] * tonsPerAcre);
+    pinkTons.push(pinkAcres[i] * tonsPerAcre);
+}
+//output the result to the console
+console.log(fujiTons);
+console.log(galaTons);
+console.log(pinkTons);
 
 
 // PROBLEM 5
@@ -161,13 +184,23 @@ let days = 0
 */
 
 // CODE HERE 
+const poundsPerTon = 2000;
+//declared the arrays;
+let fujiPounds = [];
+let galaPounds = [];
+let pinkPounds = [];
 
-// let fujiPounds =
-// let galaPounds =
-// let pinkPounds =
-
-
-
+//looped through all of the variety tons arrays at once
+for(let i = 0; i < fujiTons.length; i++)
+{
+    //multiplied the number of tons per day per variety by poundsPerTon to convert the values to pounds
+    fujiPounds.push(fujiTons[i] * poundsPerTon);
+    galaPounds.push(galaTons[i] * poundsPerTon);
+    pinkPounds.push(pinkTons[i] * poundsPerTon);
+}
+console.log(fujiPounds);
+console.log(galaPounds);
+console.log(pinkPounds);
 
 
 
@@ -188,15 +221,23 @@ let days = 0
 */
 
 // CODE HERE
-
-// let fujiProfit =
-// let galaProfit =
-// let pinkProfit =
-
-
-
-
-
+//declared the initial values of the profits for each variety
+let fujiProfit = 0;
+let galaProfit = 0;
+let pinkProfit = 0;
+//looped through all of the pounds-per-variety arrays at once
+for(let i = 0; i < fujiPounds.length; i++)
+{
+    //multiplied the number of pounds per variety per day by the variety's price per pound to calculate daily profit
+    //added the daily profit per variety to the variety's running total profit
+    fujiProfit += (fujiPounds[i] * fujiPrice);
+    galaProfit += (galaPounds[i] * galaPrice);
+    pinkProfit += (pinkPounds[i] * pinkPrice);
+}
+//output the result to the console
+console.log(fujiProfit);
+console.log(galaProfit);
+console.log(pinkProfit);
 
 // PROBLEM 7
 
@@ -209,3 +250,7 @@ let days = 0
 */
 
 // CODE HERE
+//added the profits per variety together to calculate the total profit
+let totalProfit = fujiProfit + galaProfit + pinkProfit;
+//output the result to the console
+console.log(totalProfit);
