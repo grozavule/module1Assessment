@@ -56,6 +56,7 @@ let totalAcres = 0;
 //this would fall down if, for any reason, the arrays didn't include values for all seven days of the week
 for(let i=0; i < fujiAcres.length; i++)
 {
+    //added the acres per variety per day to totalAcres
     totalAcres += fujiAcres[i];
     totalAcres += galaAcres[i];
     totalAcres += pinkAcres[i];
@@ -156,7 +157,7 @@ let pinkTons = [];
 //looped through all arrays at once assuming each has the same length as fujiAcres
 for(let i = 0; i < fujiAcres.length; i++)
 {
-    //multiplied the acres picked of each variety by the tonsPerAcre amount to calculate total tons picked per day per variety
+    //multiplied the acres picked per day of each variety by the tonsPerAcre amount to calculate total tons picked per day per variety
     fujiTons.push(fujiAcres[i] * tonsPerAcre);
     galaTons.push(galaAcres[i] * tonsPerAcre);
     pinkTons.push(pinkAcres[i] * tonsPerAcre);
